@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kids_test_game/model/images.dart';
 
 class DropDownBtn extends StatelessWidget{
-
   List<Images>imagesList;
-  DropDownBtn(this.imagesList);
+  Function chooseImage;
+  DropDownBtn(this.imagesList,this.chooseImage);
   @override
   Widget build(BuildContext context) {
       // return Row(
@@ -19,7 +19,7 @@ class DropDownBtn extends StatelessWidget{
                 items: imagesList.map(
                     (item) {
                     return DropdownMenuItem(
-                      value: item,
+                      value: imagesList.indexOf(item),
                       child: new Text(item.title,style: TextStyle(color: Colors.white),),
                     );
                   },
@@ -28,16 +28,7 @@ class DropDownBtn extends StatelessWidget{
                 iconEnabledColor: Colors.amber,
                 dropdownColor: Colors.blueGrey,
                 onChanged: (val) {
-                  // setState(() {
-                  //   _selectedLetter = val;
-                  //   var ad=new AlertDialog(
-                  //     title: Text('selected'),
-                  //     content: Text(_selectedLetter,
-                  //       style: TextStyle(color: Colors.pink,fontSize:25 ),),
-                  //   );
-                  //   showDialog(context: context,child: ad);
-                  // });
-
+                    chooseImage(val);
                 },
                 // value: _selectedLetter,
                 hint: Text(

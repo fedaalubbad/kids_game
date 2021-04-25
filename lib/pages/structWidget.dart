@@ -21,7 +21,8 @@ class StructureState extends StatelessWidget{
   Map<String, bool> score;
   int seed = 0;
   double valu=0.0;
-  StructureState(this.imageList,this.scoreFunction,this.score,this.seed,this.animateFunction);
+  int currentIndex;
+  StructureState(this.currentIndex,this.imageList,this.scoreFunction,this.score,this.seed,this.animateFunction);
 
   ScrollController scrollController=ScrollController();
   @override
@@ -52,7 +53,7 @@ class StructureState extends StatelessWidget{
                   child: GridView.builder(
                     itemCount: imageList[0].peices.keys.length,
                     itemBuilder: (ctx,index){
-                      return buildDragableTargetContent(imageList[0].peices.keys.toList()[index],);
+                      return buildDragableTargetContent(imageList[currentIndex].peices.keys.toList()[index],);
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
@@ -68,7 +69,7 @@ class StructureState extends StatelessWidget{
                 height: 70,
                 child: Expanded(
                   child: ListView(
-                    children: imageList[0].peices.keys.map((eKey) {
+                    children: imageList[currentIndex].peices.keys.map((eKey) {
                       return Draggable<String>(
                         data: eKey,
                         child: buildDragableContent(score[eKey] == true ? 'right' :'asset',eKey),
@@ -90,7 +91,9 @@ class StructureState extends StatelessWidget{
                 onChanged:(val){
                   animateFunction(valu,val,scrollController);
                 },
-                divisions: 100,
+                min: 1.0,
+                max: 20.0,
+                divisions: 10,
                 activeColor: Colors.green,
 
               ),
@@ -133,7 +136,7 @@ class StructureState extends StatelessWidget{
       decoration: BoxDecoration(
         color: Colors.blueGrey,
         borderRadius: BorderRadius.circular(2),
-        image: DecorationImage(image: AssetImage(imageList[0].peices[eKey]),fit: BoxFit.cover)
+        image: DecorationImage(image: AssetImage(imageList[currentIndex].peices[eKey]),fit: BoxFit.cover)
       ),
       height: 70,
       width: 70,
@@ -147,7 +150,7 @@ class StructureState extends StatelessWidget{
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(2),
               image: DecorationImage(
-              image: AssetImage(imageList[0].peices[key]), fit: BoxFit.cover),
+              image: AssetImage(imageList[currentIndex].peices[key]), fit: BoxFit.cover),
               color: Colors.grey,
             ),
             height: 100,

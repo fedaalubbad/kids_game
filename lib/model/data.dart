@@ -5,7 +5,7 @@ import 'images.dart';
 
 class ImageData{
   static List<Images>images=[
-    Images(title: 'animals',asset:'assets/images/kids-puzzle.jpg',id: '1',peices: {
+    Images(title: 'animals',asset:'assets/images/puzzle.jpg',id: '1',peices: {
       '1':'assets/images/Capture1.PNG',
       '2':'assets/images/Capture2.PNG',
       '3':'assets/images/Capture3.PNG',
@@ -16,7 +16,7 @@ class ImageData{
       '8':'assets/images/Capture8.PNG',
       '9':'assets/images/Capture9.PNG',
     }),
-    Images(title: 'crocodile',id: '2',peices: {
+    Images(title: 'crocodile',asset:'assets/images/crocodile.jpg',id: '2',peices: {
       '1':'assets/images/c1.PNG',
       '2':'assets/images/c2.PNG',
       '3':'assets/images/c3.PNG',

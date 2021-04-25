@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:kids_test_game/drawer.dart';
 import 'package:kids_test_game/model/data.dart';
 import 'package:kids_test_game/widgets/dropdown.dart';
+import 'package:kids_test_game/widgets/imageDialog.dart';
 import 'file:///C:/Users/fedaa/Documents/flutterPro/kids_test_game/lib/pages/structWidget.dart';
 import 'pages/ColorsWidget.dart';
 
@@ -55,20 +56,30 @@ class GameState extends State<Game> {
    setState(() {
    });
  }
-  animateTo(valu,val,contraller){
+  animateTo(valu,val,ScrollController contraller){
   valu=val;
   // if(val<100)
   valu=val*100;
   setState(() {});
-  contraller.animateTo(val, duration: Duration(milliseconds: 1), curve: Curves.easeIn);
+  contraller.animateTo(valu, duration: Duration(milliseconds: 1), curve: Curves.easeIn);
+
 }
+int dropdownIndex=0;
+   dropDown(val){
+     if(dropdownIndex!=val) {score.clear();}
 
-
+     dropdownIndex=val;
+   print('indexofnow=$dropdownIndex');
+   showDialog(context:context,child:ImageDialog(ImageData.images[dropdownIndex].asset));
+  // showDialog(context: context,child: ad);
+    setState(() {
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      actions: [index==0?DropDownBtn(ImageData.images):Container()],
+      actions: [index==0?DropDownBtn(ImageData.images,dropDown):Container()],
           // title: Text('Score ${widget.score.length} / 6'),
       title: Text('Score ${score.length} / 6'),
       backgroundColor: Colors.pink),
@@ -83,7 +94,7 @@ class GameState extends State<Game> {
         },
       ),
 
-      body: index==0 ?  StructureState(ImageData.images,setScore,score,seed,animateTo):ColorsWidgetScreen(ImageData.choices,setScore,score,seed),
+      body: index==0 ?  StructureState(dropdownIndex,ImageData.images,setScore,score,seed,animateTo):ColorsWidgetScreen(ImageData.choices,setScore,score,seed),
       drawer: Drawer(
           child: Container(
             width: 200,
@@ -97,7 +108,7 @@ class GameState extends State<Game> {
                   ),),
                 ListTile(trailing:Icon(Icons.arrow_forward_ios,color: Colors.white,),
                     leading:Icon(Icons.color_lens,color: Colors.pink,),
-                    title: Text('Colors',style: TextStyle(
+                    title: Text('Buzzle',style: TextStyle(
                     fontSize: 26,
                     fontWeight:FontWeight.bold
                 )),
@@ -112,7 +123,7 @@ class GameState extends State<Game> {
                 Divider(height: 1.5, color: Colors.brown,),
                 ListTile(trailing:Icon(Icons.arrow_forward_ios,color: Colors.white,),
                   leading:Icon(Icons.streetview,color: Colors.pink,),
-                  title: Text('Buzzle',style: TextStyle(
+                  title: Text('Colors',style: TextStyle(
                     fontSize: 26,
                     fontWeight:FontWeight.bold
                 ),),
