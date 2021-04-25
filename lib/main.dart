@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:kids_test_game/drawer.dart';
 import 'package:kids_test_game/model/data.dart';
+import 'package:kids_test_game/widgets/dropdown.dart';
 import 'file:///C:/Users/fedaa/Documents/flutterPro/kids_test_game/lib/pages/structWidget.dart';
 import 'pages/ColorsWidget.dart';
 
@@ -67,6 +68,7 @@ class GameState extends State<Game> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+      actions: [index==0?DropDownBtn(ImageData.images):Container()],
           // title: Text('Score ${widget.score.length} / 6'),
       title: Text('Score ${score.length} / 6'),
       backgroundColor: Colors.pink),
@@ -110,7 +112,7 @@ class GameState extends State<Game> {
                 Divider(height: 1.5, color: Colors.brown,),
                 ListTile(trailing:Icon(Icons.arrow_forward_ios,color: Colors.white,),
                   leading:Icon(Icons.streetview,color: Colors.pink,),
-                  title: Text('Structures',style: TextStyle(
+                  title: Text('Buzzle',style: TextStyle(
                     fontSize: 26,
                     fontWeight:FontWeight.bold
                 ),),

@@ -5,7 +5,7 @@ import 'images.dart';
 
 class ImageData{
   static List<Images>images=[
-    Images(title: 'animals',id: '1',peices: {
+    Images(title: 'animals',asset:'assets/images/kids-puzzle.jpg',id: '1',peices: {
       '1':'assets/images/Capture1.PNG',
       '2':'assets/images/Capture2.PNG',
       '3':'assets/images/Capture3.PNG',
